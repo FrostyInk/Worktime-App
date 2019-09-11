@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Worktime-App/static/css/main.d94bc4b0.chunk.css",
-    "main.js": "/Worktime-App/static/js/main.6ab18554.chunk.js",
-    "main.js.map": "/Worktime-App/static/js/main.6ab18554.chunk.js.map",
+    "main.js": "/Worktime-App/static/js/main.f4100707.chunk.js",
+    "main.js.map": "/Worktime-App/static/js/main.f4100707.chunk.js.map",
     "runtime~main.js": "/Worktime-App/static/js/runtime~main.035ca209.js",
     "runtime~main.js.map": "/Worktime-App/static/js/runtime~main.035ca209.js.map",
     "static/js/2.5bcb553c.chunk.js": "/Worktime-App/static/js/2.5bcb553c.chunk.js",
     "static/js/2.5bcb553c.chunk.js.map": "/Worktime-App/static/js/2.5bcb553c.chunk.js.map",
     "index.html": "/Worktime-App/index.html",
-    "precache-manifest.e00160f2a988fb1a14edd53fc68253e1.js": "/Worktime-App/precache-manifest.e00160f2a988fb1a14edd53fc68253e1.js",
+    "precache-manifest.33261f691fb01e3a74ded0f8b240ca0b.js": "/Worktime-App/precache-manifest.33261f691fb01e3a74ded0f8b240ca0b.js",
     "service-worker.js": "/Worktime-App/service-worker.js",
     "static/css/main.d94bc4b0.chunk.css.map": "/Worktime-App/static/css/main.d94bc4b0.chunk.css.map"
   }
