@@ -65,7 +65,7 @@ function App() {
   }
 
   return (
-    <Router basename="/Worktime-App">
+    <Router basename="/">
       <div className="App">
         <Switch>
           <Route
