@@ -1,0 +1,122 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+}
+body,
+.Header,
+.Footer {
+  font-family: "Quicksand", sans-serif;
+  background: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
+
+.App {
+  position: relative;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background: #eae7e1;
+}
+
+.Header {
+  position: relative;
+  background: #fd0b43;
+  height: 50px;
+  margin-bottom: 2px;
+}
+
+.Header h1 {
+  color: white;
+  font-size: 1.5em;
+  padding-top: 15px;
+  text-align: center;
+}
+
+.Footer {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  padding-top: 10px;
+  background: #fd0b43;
+  color: white;
+  text-align: center;
+}
+
+.Footer button {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  border: none;
+}
+
+.Footer button:hover {
+  background: green;
+}
+
+.Footer button:active {
+  background: blue;
+}
+
+.HomeContent {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 52px;
+}
+
+.HomeContent .Links {
+  margin-top: 5px;
+}
+
+.HomeContent .Links .LinkButton {
+  color: white;
+  background: red;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: calc(100% - 50px);
+  float: right;
+  padding-left: 20px;
+}
+
+.HomeContent .Links .LinkButton:hover {
+  background: cyan;
+  cursor: default;
+}
+
+.HomeContent .Links .HomeDeleteButton {
+  float: left;
+  background: red;
+  border: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 50px;
+}
+
+.HomeContent .Links .HomeDeleteButton:hover {
+  background: yellow;
+}
+
+.AddInput {
+  width: calc(100% - 70px);
+  position: absolute;
+  bottom: 55px;
+  left: 10px;
+  height: 25px;
+  text-align: center;
+}
+
+.AddInputSubmit {
+  width: 50px;
+  position: absolute;
+  bottom: 54px;
+  right: 10px;
+  height: 27px;
+  text-align: center;
+}
