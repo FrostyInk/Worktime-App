@@ -4,6 +4,7 @@ import Header from "./Header";
 
 function WorkPlaces(props) {
   const [value, setValue] = useState("");
+  const [worker, SetWorker] = useState([]);
 
   useEffect(() => {});
 

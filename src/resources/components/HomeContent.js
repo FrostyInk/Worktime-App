@@ -4,6 +4,7 @@ import Header from "./Header";
 
 function HomeContent(props) {
   const [value, setValue] = useState("");
+  const [workers, SetWorkers] = useState([]);
 
   function HandleChange(e) {
     setValue(e.target.value);

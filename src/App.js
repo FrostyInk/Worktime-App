@@ -6,13 +6,12 @@ import HomeContent from "./resources/components/HomeContent";
 import Footer from "./resources/components/Footer";
 import WorkPlaces from "./resources/components/WorkPlaces";
 import WorkPlace from "./resources/components/WorkPlace";
+import Week from "./resources/components/Week";
 
 function App() {
-  const [workers, setWorkers] = useState([]);
+  const [workers, SetWorkers] = useState([]);
 
-  useEffect(() => {
-    console.log(workers);
-  });
+  useEffect(() => {});
 
   function AddWorkerCallback(worker) {
     if (!worker) return;
@@ -29,7 +28,7 @@ function App() {
       places: []
     };
 
-    setWorkers([...workers, newWorker]);
+    SetWorkers([...workers, newWorker]);
   }
 
   function AddPlaceCallback(place, worker) {
@@ -41,7 +40,7 @@ function App() {
 
     workers.splice(workers.indexOf(worker), 1);
     worker.places = [...worker.places, newPlace];
-    setWorkers([...workers, worker]);
+    SetWorkers([...workers, worker]);
   }
 
   function AddWeekCallback(week, place, worker) {
@@ -49,23 +48,23 @@ function App() {
     const newWeek = {
       name: cleaned,
       days: {
-        monday: 0,
-        tuesday: 0,
-        wednesday: 0,
-        thursday: 0,
-        friday: 0,
-        saturday: 0,
-        sunday: 0
+        Maanantai: 0,
+        Tiistai: 0,
+        Keskiviikko: 0,
+        Torstai: 0,
+        Perjantai: 0,
+        Lauantai: 0,
+        Sunnuntai: 0
       }
     };
 
     place.weeks.push(newWeek);
     workers.splice(workers.indexOf(worker), 1);
-    setWorkers([...workers, worker]);
+    SetWorkers([...workers, worker]);
   }
 
   return (
-    <Router basename="/">
+    <Router basename="/Worktime-App">
       <div className="App">
         <Switch>
           <Route
@@ -88,9 +87,16 @@ function App() {
           />
           <Route
             path="/:id/:workplace"
+            exact
             render={props => (
               <WorkPlace {...props} AddWeekCallback={AddWeekCallback} />
             )}
+          />
+          />
+          <Route
+            path="/:id/:workplace/:week"
+            exact
+            render={props => <Week {...props} />}
           />
         </Switch>
         <Footer />

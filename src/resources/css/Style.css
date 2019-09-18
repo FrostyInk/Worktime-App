@@ -29,7 +29,6 @@ a {
   position: relative;
   background: #fd0b43;
   height: 50px;
-  margin-bottom: 2px;
 }
 
 .Header h1 {
@@ -72,17 +71,20 @@ a {
 }
 
 .HomeContent .Links {
-  margin-top: 5px;
+  margin-top: 0.2rem;
 }
 
 .HomeContent .Links .LinkButton {
   color: white;
-  background: red;
+  font-size: 1.1em;
+  background: #fd0b43;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   width: calc(100% - 50px);
+  height: 2rem;
   float: right;
   padding-left: 20px;
+  padding-top: 0.4rem;
 }
 
 .HomeContent .Links .LinkButton:hover {
@@ -94,6 +96,7 @@ a {
   float: left;
   background: red;
   border: none;
+  height: 2rem;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   width: 50px;
@@ -119,4 +122,33 @@ a {
   right: 10px;
   height: 27px;
   text-align: center;
+}
+
+.Key {
+  margin-top: 0.2rem;
+  color: white;
+  font-size: 1.1em;
+  background: #fd0b43;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: calc(100% - 50px);
+  height: 2rem;
+  float: left;
+  padding-left: 20px;
+  padding-top: 0.4rem;
+}
+
+.Value {
+  float: right;
+  color: white;
+  font-size: 1.1em;
+  background: #fd0b43;
+  border: none;
+  margin-top: 0.2rem;
+  height: 2rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 50px;
+  padding-left: 1rem;
+  padding-top: 0.4rem;
 }

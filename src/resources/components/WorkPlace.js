@@ -28,8 +28,10 @@ function WorkPlace(props) {
           <Link
             className="LinkButton"
             to={{
-              pathname: `${props.location.worker.id}/${props.location.place.name}`,
-              week
+              pathname: `${props.location.place.name}/${week.name}`,
+              worker: props.location.worker,
+              place: props.location.place,
+              week: week
             }}
           >
             {week.name}
