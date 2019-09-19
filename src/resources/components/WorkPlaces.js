@@ -11,7 +11,6 @@ function WorkPlaces(props) {
     if (typeof t !== "undefined") {
       SetWorker(t);
       props.SetTitle(t.name + " --> ");
-      console.log("Setting worker to " + t.name);
     }
   });
 
@@ -21,6 +20,7 @@ function WorkPlaces(props) {
   }
 
   function HandleClick(e) {
+    e.target.previousSibling.value = "";
     props.AddPlaceCallback(value, worker);
   }
 
@@ -42,7 +42,7 @@ function WorkPlaces(props) {
               </Link>
             </div>
           ))
-        : console.log("Worker not found...")}
+        : null}
       <input
         className="AddInput"
         placeholder="Lisää työkohde"

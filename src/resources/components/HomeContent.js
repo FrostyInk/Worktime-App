@@ -11,6 +11,7 @@ function HomeContent(props) {
   }
 
   function HandleClick(e) {
+    e.target.previousSibling.value = "";
     props.AddWorkerCallback(value);
   }
 

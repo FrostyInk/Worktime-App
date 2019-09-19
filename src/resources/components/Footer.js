@@ -2,18 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer(props) {
-  function HandleClick() {
-    props.history.goBack();
+  function HandleClick(e) {
+    if (e.target.name === "back") {
+      props.history.goBack();
+    } else {
+      localStorage.clear();
+      window.location.reload();
+    }
   }
 
   return (
     <div className="Footer">
       {props.location.pathname !== "/" ? (
-        <button className="BackButton" onClick={HandleClick}>
+        <button className="BackButton" name="back" onClick={HandleClick}>
           Back
         </button>
       ) : (
-        <p className="FooterHomePageText"></p>
+        <button className="ResetButton" name="reset" onClick={HandleClick}>
+          Reset
+        </button>
       )}
     </div>
   );

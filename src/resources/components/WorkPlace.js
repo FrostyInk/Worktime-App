@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 
 function WorkPlace(props) {
-  console.log(props);
   const [value, setValue] = useState("");
   const [worker, SetWorker] = useState({});
   const [place, SetPlace] = useState({});
@@ -18,7 +17,6 @@ function WorkPlace(props) {
     if (typeof worker !== "undefined") {
       const p = props.GetWorkplaceFrom(props.match.params.workplace, worker);
       if (typeof p !== "undefined") {
-        console.log("Setting place to " + p.name);
         SetPlace(p);
         props.SetTitle(worker.name + " -> " + p.name);
       }
@@ -30,6 +28,7 @@ function WorkPlace(props) {
   }
 
   function HandleClick(e) {
+    e.target.previousSibling.value = "";
     props.AddWeekCallback(value, place, worker);
   }
 
@@ -42,7 +41,7 @@ function WorkPlace(props) {
               <Link
                 className="LinkButton"
                 to={{
-                  pathname: `${worker.id}/${place.name}`,
+                  pathname: `${place.name}/${week.name}`,
                   worker: worker,
                   place: place,
                   week: week
@@ -52,7 +51,7 @@ function WorkPlace(props) {
               </Link>
             </div>
           ))
-        : console.log("Doesn't exist")}
+        : null}
       <input
         className="AddInput"
         placeholder="Lisää viikko"

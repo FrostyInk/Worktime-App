@@ -54,7 +54,7 @@ function App() {
       places: []
     };
 
-    SetWorkers([...workers, newWorker]);
+    SetWorkers([newWorker, ...workers]);
   }
 
   function AddPlaceCallback(place, worker) {
@@ -65,8 +65,8 @@ function App() {
     };
 
     workers.splice(workers.indexOf(worker), 1);
-    worker.places = [...worker.places, newPlace];
-    SetWorkers([...workers, worker]);
+    worker.places = [newPlace, ...worker.places];
+    SetWorkers([worker, ...workers]);
   }
 
   function AddWeekCallback(week, place, worker) {
@@ -84,8 +84,15 @@ function App() {
       }
     };
 
-    place.weeks.push(newWeek);
+    place.weeks.unshift(newWeek);
     workers.splice(workers.indexOf(worker), 1);
+    SetWorkers([...workers, worker]);
+  }
+
+  function SetWeek(worker, place, oldWeek, newWeek) {
+    place.weeks.splice(place.weeks.indexOf(oldWeek), 1);
+    workers.splice(workers.indexOf(worker), 1);
+    place.weeks.unshift(newWeek);
     SetWorkers([...workers, worker]);
   }
 
@@ -156,7 +163,9 @@ function App() {
           <Route
             path="/:id/:workplace/:week"
             exact
-            render={props => <Week {...props} SetTitle={Title} />}
+            render={props => (
+              <Week {...props} SetTitle={Title} SetWeek={SetWeek} />
+            )}
           />
         </Switch>
         <Route render={props => <Footer {...props} />} />
