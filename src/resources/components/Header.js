@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Header(props) {
+  const [value, setValue] = useState("");
+
   return (
     <div className="Header">
       <Link to="/">

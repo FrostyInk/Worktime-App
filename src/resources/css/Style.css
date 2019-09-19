@@ -22,12 +22,12 @@ a {
   height: 100vh;
   margin-left: auto;
   margin-right: auto;
-  background: #eae7e1;
+  background: #dce8f2;
 }
 
 .Header {
   position: relative;
-  background: #fd0b43;
+  background: #1c7fd6;
   height: 50px;
 }
 
@@ -41,27 +41,11 @@ a {
 .Footer {
   position: absolute;
   bottom: 0;
-  height: 50px;
+  height: 3em;
   width: 100%;
-  padding-top: 10px;
-  background: #fd0b43;
+  background: #1c7fd6;
   color: white;
   text-align: center;
-}
-
-.Footer button {
-  width: 30px;
-  height: 30px;
-  border-radius: 25px;
-  border: none;
-}
-
-.Footer button:hover {
-  background: green;
-}
-
-.Footer button:active {
-  background: blue;
 }
 
 .HomeContent {
@@ -77,7 +61,7 @@ a {
 .HomeContent .Links .LinkButton {
   color: white;
   font-size: 1.1em;
-  background: #fd0b43;
+  background: #4e98d9;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   width: calc(100% - 50px);
@@ -94,7 +78,7 @@ a {
 
 .HomeContent .Links .HomeDeleteButton {
   float: left;
-  background: red;
+  background: #9e000b;
   border: none;
   height: 2rem;
   border-top: 1px solid black;
@@ -128,7 +112,7 @@ a {
   margin-top: 0.2rem;
   color: white;
   font-size: 1.1em;
-  background: #fd0b43;
+  background: #03a1fc;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   width: calc(100% - 50px);
@@ -142,7 +126,7 @@ a {
   float: right;
   color: white;
   font-size: 1.1em;
-  background: #fd0b43;
+  background: #03a1fc;
   border: none;
   margin-top: 0.2rem;
   height: 2rem;
@@ -151,4 +135,18 @@ a {
   width: 50px;
   padding-left: 1rem;
   padding-top: 0.4rem;
+}
+
+.BackButton {
+  border: none;
+  background: #ffb400;
+  color: white;
+  float: left;
+  width: 6em;
+  height: 3em;
+  font-size: 1em;
+}
+
+.FooterHomePageText {
+  font-size: 2em;
 }

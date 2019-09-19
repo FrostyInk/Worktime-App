@@ -9,9 +9,35 @@ import WorkPlace from "./resources/components/WorkPlace";
 import Week from "./resources/components/Week";
 
 function App() {
+  const saveFileName = "WorkTimeAppData";
   const [workers, SetWorkers] = useState([]);
+  const [title, SetTitle] = useState([]);
+  let firstLoad = true;
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (workers.length > 0) {
+      Save();
+    }
+  }, [workers]);
+
+  useEffect(() => {
+    Load();
+  }, []);
+
+  function Save() {
+    const saveData = JSON.stringify(workers);
+    window.localStorage.setItem(saveFileName, saveData);
+    console.log("Saving... " + saveData);
+  }
+
+  function Load() {
+    const loaded = window.localStorage.getItem(saveFileName);
+    const parsed = JSON.parse(loaded);
+    if (parsed) {
+      SetWorkers(parsed);
+      console.log("Loading users...");
+    }
+  }
 
   function AddWorkerCallback(worker) {
     if (!worker) return;
@@ -63,9 +89,30 @@ function App() {
     SetWorkers([...workers, worker]);
   }
 
+  function GetWorkerById(id) {
+    for (const item in workers) {
+      if (workers[item].id === id) {
+        return workers[item];
+      }
+    }
+  }
+
+  function GetWorkplaceFrom(name, w) {
+    for (const place in w.places) {
+      if (w.places[place].name === name) {
+        return w.places[place];
+      }
+    }
+  }
+
+  function Title(title) {
+    SetTitle(title);
+  }
+
   return (
     <Router basename="/Worktime-App">
       <div className="App">
+        <Header title={title} />
         <Switch>
           <Route
             path="/"
@@ -75,6 +122,8 @@ function App() {
                 {...props}
                 workers={workers}
                 AddWorkerCallback={AddWorkerCallback}
+                SetTitle={Title}
+                GetWorkerById={GetWorkerById}
               />
             )}
           />
@@ -82,24 +131,35 @@ function App() {
             path="/:id"
             exact
             render={props => (
-              <WorkPlaces {...props} AddPlaceCallback={AddPlaceCallback} />
+              <WorkPlaces
+                {...props}
+                AddPlaceCallback={AddPlaceCallback}
+                SetTitle={Title}
+                GetWorkerById={GetWorkerById}
+              />
             )}
           />
           <Route
             path="/:id/:workplace"
             exact
             render={props => (
-              <WorkPlace {...props} AddWeekCallback={AddWeekCallback} />
+              <WorkPlace
+                {...props}
+                AddWeekCallback={AddWeekCallback}
+                SetTitle={Title}
+                GetWorkerById={GetWorkerById}
+                GetWorkplaceFrom={GetWorkplaceFrom}
+              />
             )}
           />
           />
           <Route
             path="/:id/:workplace/:week"
             exact
-            render={props => <Week {...props} />}
+            render={props => <Week {...props} SetTitle={Title} />}
           />
         </Switch>
-        <Footer />
+        <Route render={props => <Footer {...props} />} />
       </div>
     </Router>
   );
@@ -121,7 +181,7 @@ function App() {
       let temp = split[i];
       let word = "";
       for (let y = 0; y < temp.length; y++) {
-        if (y == 0 && IsAlpha(temp[y])) {
+        if (y === 0 && IsAlpha(temp[y])) {
           word += temp[y].toUpperCase();
           continue;
         }
@@ -146,7 +206,7 @@ function App() {
       let currentString = splittedArray[i];
 
       // If we are currently at the first string of the array (First word of the sentence)
-      if (i == 0) {
+      if (i === 0) {
         // temporary string
         let tempString = "";
 

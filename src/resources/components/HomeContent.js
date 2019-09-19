@@ -16,18 +16,20 @@ function HomeContent(props) {
 
   return (
     <div className="HomeContent">
-      <Header title="Työntekijät" />
-      {props.workers.map(worker => (
-        <div key={worker.id} className="Links">
-          <button className="HomeDeleteButton">X</button>
-          <Link
-            className="LinkButton"
-            to={{ pathname: `${worker.id}`, worker }}
-          >
-            {worker.name}
-          </Link>
-        </div>
-      ))}
+      {
+        (props.SetTitle("Työntekijät"),
+        props.workers.map(worker => (
+          <div key={worker.id} className="Links">
+            <button className="HomeDeleteButton">X</button>
+            <Link
+              className="LinkButton"
+              to={{ pathname: `${worker.id}`, worker }}
+            >
+              {worker.name}
+            </Link>
+          </div>
+        )))
+      }
 
       <input
         className="AddInput"
