@@ -17,6 +17,17 @@ function HomeContent(props) {
 
   return (
     <div className="HomeContent">
+      <div className="Input">
+        <input
+          className="AddInput"
+          placeholder="Lisää työntekijä"
+          onChange={HandleChange}
+          type="text"
+        ></input>
+        <button className="AddInputSubmit" onClick={HandleClick}>
+          +
+        </button>
+      </div>
       {
         (props.SetTitle("Työntekijät"),
         props.workers.map(worker => (
@@ -31,16 +42,6 @@ function HomeContent(props) {
           </div>
         )))
       }
-
-      <input
-        className="AddInput"
-        placeholder="Lisää työntekijä"
-        onChange={HandleChange}
-        type="text"
-      ></input>
-      <button className="AddInputSubmit" onClick={HandleClick}>
-        +
-      </button>
     </div>
   );
 }

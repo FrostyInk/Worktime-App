@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Firebase from "firebase";
 
 function Footer(props) {
   function HandleClick(e) {
@@ -7,6 +8,9 @@ function Footer(props) {
       props.history.goBack();
     } else {
       localStorage.clear();
+      Firebase.database()
+        .ref("/")
+        .remove();
       window.location.reload();
     }
   }

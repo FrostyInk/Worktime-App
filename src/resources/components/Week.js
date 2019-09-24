@@ -19,13 +19,13 @@ function Week(props) {
   }, [week]);
 
   function HandleChange(e) {
-    const { name, value } = e.target;
     if (e.target.value < 0) {
       e.target.value = 0;
     } else if (e.target.value > 24) {
       e.target.value = 24;
     }
 
+    const { name, value } = e.target;
     SetWeek({
       name: props.location.week.name,
       days: {
@@ -39,15 +39,23 @@ function Week(props) {
     e.target.value = "";
   }
 
+  function HandleFocus(e) {}
+
+  function HandleBlur(e) {
+    if (e.target.value === "") {
+      e.target.value = 0;
+    }
+  }
+
   function CalcTotal() {
     let sum = 0;
     for (var key in week.days) {
       if (week.days.hasOwnProperty(key)) {
-        sum = sum + parseInt(week.days[key]);
+        sum = sum + parseFloat(week.days[key]);
       }
     }
 
-    return sum;
+    return sum.toFixed(1);
   }
 
   return (
@@ -62,25 +70,24 @@ function Week(props) {
         ),
         typeof week.days !== "undefined"
           ? Object.keys(week.days).map(key => (
-              <div>
-                <label key={key} className="Key">
-                  {key}
-                </label>
+              <div key={key}>
+                <label className="Key">{key}</label>
                 <input
                   onChange={HandleChange}
-                  key={key + week.days[key]}
                   name={key}
                   className="HourInput"
                   type="number"
-                  value={week.days[key]}
                   max="24"
                   min="0"
                   step="0.01"
+                  value={week.days[key]}
                   onClick={HandleClick}
+                  onFocus={HandleFocus}
+                  onBlur={HandleBlur}
                 ></input>
               </div>
             ))
-          : console.log("test"))
+          : null)
       }
       <div>
         <label className="Total">Yhteensä</label>

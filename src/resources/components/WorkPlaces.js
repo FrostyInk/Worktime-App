@@ -26,8 +26,19 @@ function WorkPlaces(props) {
 
   return (
     <div className="HomeContent">
+      <div className="Input">
+        <input
+          className="AddInput"
+          placeholder="Lisää työkohde"
+          onChange={HandleChange}
+          type="text"
+        ></input>
+        <button className="AddInputSubmit" onClick={HandleClick}>
+          +
+        </button>
+      </div>
       {typeof worker.name !== "undefined"
-        ? worker.places.map(place => (
+        ? worker.places.map((place, index) => (
             <div key={worker.id + place.name} className="Links">
               <button className="HomeDeleteButton">X</button>
               <Link
@@ -35,7 +46,8 @@ function WorkPlaces(props) {
                 to={{
                   pathname: `${worker.id}/${place.name}`,
                   worker: worker,
-                  place: place
+                  place: place,
+                  index: index
                 }}
               >
                 {place.name}
@@ -43,15 +55,6 @@ function WorkPlaces(props) {
             </div>
           ))
         : null}
-      <input
-        className="AddInput"
-        placeholder="Lisää työkohde"
-        onChange={HandleChange}
-        type="text"
-      ></input>
-      <button className="AddInputSubmit" onClick={HandleClick}>
-        +
-      </button>
     </div>
   );
 }

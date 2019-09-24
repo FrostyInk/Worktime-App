@@ -6,12 +6,20 @@ function WorkPlace(props) {
   const [value, setValue] = useState("");
   const [worker, SetWorker] = useState({});
   const [place, SetPlace] = useState({});
+  const [total, SetTotal] = useState(0);
+
   useEffect(() => {
     const t = props.GetWorkerById(props.match.params.id);
     if (typeof t !== "undefined") {
       SetWorker(t);
     }
   });
+
+  useEffect(() => {
+    if (place.weeks !== "undefined") {
+      CalcTotalAllWeeks();
+    }
+  }, [place]);
 
   useEffect(() => {
     if (typeof worker !== "undefined") {
@@ -32,14 +40,45 @@ function WorkPlace(props) {
     props.AddWeekCallback(value, place, worker);
   }
 
+  function CalcTotalWeek(week) {
+    let sum = 0;
+    for (let key in week.days) {
+      if (week.days.hasOwnProperty(key)) {
+        sum = sum + parseFloat(week.days[key]);
+      }
+    }
+    // sum.toFixed(1)
+    return sum;
+  }
+
+  function CalcTotalAllWeeks() {
+    let sum = 0;
+    for (const item in place.weeks) {
+      sum = sum + CalcTotalWeek(place.weeks[item]);
+    }
+
+    SetTotal(sum);
+  }
+
   return (
     <div className="HomeContent">
+      <div className="Input">
+        <input
+          className="AddInput"
+          placeholder="Lisää viikko"
+          onChange={HandleChange}
+          type="text"
+        ></input>
+        <button className="AddInputSubmit" onClick={HandleClick}>
+          +
+        </button>
+      </div>
       {typeof worker !== "undefined" && typeof place.weeks !== "undefined"
         ? place.weeks.map(week => (
             <div key={worker.id + place.name + week.name} className="Links">
               <button className="HomeDeleteButton">X</button>
               <Link
-                className="LinkButton"
+                className="LinkButtonShort"
                 to={{
                   pathname: `${place.name}/${week.name}`,
                   worker: worker,
@@ -49,18 +88,14 @@ function WorkPlace(props) {
               >
                 {week.name}
               </Link>
+              <label className="WeekTotalValue">{CalcTotalWeek(week)}</label>
             </div>
           ))
         : null}
-      <input
-        className="AddInput"
-        placeholder="Lisää viikko"
-        onChange={HandleChange}
-        type="text"
-      ></input>
-      <button className="AddInputSubmit" onClick={HandleClick}>
-        +
-      </button>
+      <div>
+        <label className="Total">Yhteensä</label>
+        <label className="TotalValue">{total}</label>
+      </div>
     </div>
   );
 }

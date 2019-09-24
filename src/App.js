@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Firebase from "firebase";
+import Config from "./resources/data/Config";
+import ServiceAccount from "./resources/data/serviceAccount";
 
 import Header from "./resources/components/Header";
 import HomeContent from "./resources/components/HomeContent";
@@ -21,22 +24,36 @@ function App() {
   }, [workers]);
 
   useEffect(() => {
+    Firebase.initializeApp(Config);
     Load();
   }, []);
 
   function Save() {
-    const saveData = JSON.stringify(workers);
-    window.localStorage.setItem(saveFileName, saveData);
-    console.log("Saving... " + saveData);
+    Firebase.database()
+      .ref("/workers")
+      .set(workers)
+      .then(data => console.log("Success"))
+      .catch(err => console.error(err));
+    // const saveData = JSON.stringify(workers);
+    // window.localStorage.setItem(saveFileName, saveData);
+    console.log("Saving to firebase!");
   }
 
   function Load() {
-    const loaded = window.localStorage.getItem(saveFileName);
-    const parsed = JSON.parse(loaded);
-    if (parsed) {
-      SetWorkers(parsed);
-      console.log("Loading users...");
-    }
+    Firebase.database()
+      .ref("workers/")
+      .once("value", function(snapshot) {
+        if (snapshot.val() !== null) {
+          SetWorkers(snapshot.val());
+        } else {
+          console.log("Data is null");
+        }
+      });
+    // const loaded = window.localStorage.getItem(saveFileName);
+    // const parsed = JSON.parse(loaded);
+    // if (parsed) {
+    //   SetWorkers(parsed);
+    //console.log("Loading users...");
   }
 
   function AddWorkerCallback(worker) {
@@ -64,9 +81,12 @@ function App() {
       weeks: []
     };
 
-    workers.splice(workers.indexOf(worker), 1);
-    worker.places = [newPlace, ...worker.places];
-    SetWorkers([worker, ...workers]);
+    const t = {
+      ...worker,
+      places: [...worker.places, newPlace]
+    };
+
+    SetWorkers(workers.map(w => (w.name === t.name ? t : w)));
   }
 
   function AddWeekCallback(week, place, worker) {
@@ -84,16 +104,37 @@ function App() {
       }
     };
 
-    place.weeks.unshift(newWeek);
-    workers.splice(workers.indexOf(worker), 1);
-    SetWorkers([...workers, worker]);
+    const t = {
+      id: worker.id,
+      name: worker.name,
+      places: worker.places.map(p =>
+        p.name === place.name
+          ? {
+              name: p.name,
+              weeks: [newWeek, ...p.weeks]
+            }
+          : p
+      )
+    };
+
+    SetWorkers(workers.map(w => (w.name === t.name ? t : w)));
   }
 
   function SetWeek(worker, place, oldWeek, newWeek) {
-    place.weeks.splice(place.weeks.indexOf(oldWeek), 1);
-    workers.splice(workers.indexOf(worker), 1);
-    place.weeks.unshift(newWeek);
-    SetWorkers([...workers, worker]);
+    const t = {
+      id: worker.id,
+      name: worker.name,
+      places: worker.places.map(p =>
+        p.name === place.name
+          ? {
+              name: p.name,
+              weeks: p.weeks.map(w => (w.name === newWeek.name ? newWeek : w))
+            }
+          : p
+      )
+    };
+
+    SetWorkers(workers.map(w => (w.name === t.name ? t : w)));
   }
 
   function GetWorkerById(id) {
