@@ -7,9 +7,9 @@ function Footer(props) {
     if (e.target.name === "back") {
       props.history.goBack();
     } else {
-      localStorage.clear();
+      props.CreateBackup();
       Firebase.database()
-        .ref("/")
+        .ref(props.currentBuild)
         .remove();
       window.location.reload();
     }

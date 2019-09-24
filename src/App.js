@@ -15,7 +15,12 @@ function App() {
   const saveFileName = "WorkTimeAppData";
   const [workers, SetWorkers] = useState([]);
   const [title, SetTitle] = useState([]);
-  let firstLoad = true;
+
+  const backup = "/backup";
+  const testBuild = "/test";
+  const releaseBuild = "/workers";
+
+  const currentBuild = releaseBuild;
 
   useEffect(() => {
     if (workers.length > 0) {
@@ -30,7 +35,7 @@ function App() {
 
   function Save() {
     Firebase.database()
-      .ref("/workers")
+      .ref(currentBuild)
       .set(workers)
       .then(data => console.log("Success"))
       .catch(err => console.error(err));
@@ -41,10 +46,11 @@ function App() {
 
   function Load() {
     Firebase.database()
-      .ref("workers/")
+      .ref(currentBuild)
       .once("value", function(snapshot) {
         if (snapshot.val() !== null) {
           SetWorkers(snapshot.val());
+          console.log(snapshot.val());
         } else {
           console.log("Data is null");
         }
@@ -54,6 +60,17 @@ function App() {
     // if (parsed) {
     //   SetWorkers(parsed);
     //console.log("Loading users...");
+  }
+
+  function CreateBackup() {
+    Firebase.database()
+      .ref(backup)
+      .set(workers)
+      .then(data => console.log("Success"))
+      .catch(err => console.error(err));
+    // const saveData = JSON.stringify(workers);
+    // window.localStorage.setItem(saveFileName, saveData);
+    console.log("Saving backup to firebase!");
   }
 
   function AddWorkerCallback(worker) {
@@ -83,8 +100,10 @@ function App() {
 
     const t = {
       ...worker,
-      places: [...worker.places, newPlace]
+      places: [...worker.places]
     };
+
+    t.places.unshift(newPlace);
 
     SetWorkers(workers.map(w => (w.name === t.name ? t : w)));
   }
@@ -209,7 +228,11 @@ function App() {
             )}
           />
         </Switch>
-        <Route render={props => <Footer {...props} />} />
+        <Route
+          render={props => (
+            <Footer {...props} backup={CreateBackup} build={currentBuild} />
+          )}
+        />
       </div>
     </Router>
   );

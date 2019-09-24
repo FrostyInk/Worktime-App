@@ -25,7 +25,7 @@ function Week(props) {
       e.target.value = 24;
     }
 
-    const { name, value } = e.target;
+    const { name, value, index } = e.target;
     SetWeek({
       name: props.location.week.name,
       days: {
@@ -69,9 +69,9 @@ function Week(props) {
             props.location.week.name
         ),
         typeof week.days !== "undefined"
-          ? Object.keys(week.days).map(key => (
+          ? Object.keys(week.days).map((key, index) => (
               <div key={key}>
-                <label className="Key">{key}</label>
+                <label className="Key">{index + " " + key}</label>
                 <input
                   onChange={HandleChange}
                   name={key}
@@ -81,6 +81,7 @@ function Week(props) {
                   min="0"
                   step="0.01"
                   value={week.days[key]}
+                  index={index}
                   onClick={HandleClick}
                   onFocus={HandleFocus}
                   onBlur={HandleBlur}

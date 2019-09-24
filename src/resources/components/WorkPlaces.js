@@ -37,7 +37,7 @@ function WorkPlaces(props) {
           +
         </button>
       </div>
-      {typeof worker.name !== "undefined"
+      {typeof worker.places !== "undefined"
         ? worker.places.map((place, index) => (
             <div key={worker.id + place.name} className="Links">
               <button className="HomeDeleteButton">X</button>
