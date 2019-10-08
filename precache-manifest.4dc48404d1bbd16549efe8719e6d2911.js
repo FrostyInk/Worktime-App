@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "203aeb3d72cd66f2bcf231516dfebe15",
+    "revision": "8596dfd846257c6a1a0e32a13a791f46",
     "url": "/Worktime-App/index.html"
   },
   {
-    "revision": "7e3a993ed737b363a9e8",
-    "url": "/Worktime-App/static/css/main.8bcf7771.chunk.css"
+    "revision": "e939726f6162e4d0f468",
+    "url": "/Worktime-App/static/css/main.19771b11.chunk.css"
   },
   {
     "revision": "6c86ac33147007f243aa",
     "url": "/Worktime-App/static/js/2.ff40fc4f.chunk.js"
   },
   {
-    "revision": "7e3a993ed737b363a9e8",
+    "revision": "e939726f6162e4d0f468",
     "url": "/Worktime-App/static/js/main.077d9986.chunk.js"
   },
   {
