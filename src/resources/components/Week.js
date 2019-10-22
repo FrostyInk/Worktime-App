@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 
 function Week(props) {
-  const [week, SetWeek] = useState(0);
+  const [week, SetWeek] = useState([]);
 
   useEffect(() => {
     SetWeek(props.location.week);
   }, []);
 
   useEffect(() => {
+    if (props.location.week.type === "oldweek") return;
     props.SetWeek(
       props.location.worker,
       props.location.place,
@@ -19,23 +20,27 @@ function Week(props) {
   }, [week]);
 
   function HandleChange(e) {
+    if (props.location.week.type === "oldweek") return;
     if (e.target.value < 0) {
       e.target.value = 0;
     } else if (e.target.value > 24) {
       e.target.value = 24;
     }
 
-    const { name, value, index } = e.target;
+    const { name, value } = e.target;
+
+    console.log(name);
     SetWeek({
       name: props.location.week.name,
-      days: {
-        ...week.days,
-        [name]: value
-      }
+      type: week.type,
+      days: week.days.map(day =>
+        Object.keys(day)[0] !== name ? day : { [name]: value }
+      )
     });
   }
 
   function HandleClick(e) {
+    if (props.location.week.type === "oldweek") return;
     e.target.value = "";
   }
 
@@ -49,13 +54,11 @@ function Week(props) {
 
   function CalcTotal() {
     let sum = 0;
-    for (var key in week.days) {
-      if (week.days.hasOwnProperty(key)) {
-        sum = sum + parseFloat(week.days[key]);
-      }
+    for (const day in week.days) {
+      console.log(Object.values(day)[0]);
+      sum = sum + parseFloat(Object.values(week.days[day])[0]);
     }
-
-    return sum.toFixed(1);
+    return sum;
   }
 
   return (
@@ -69,19 +72,18 @@ function Week(props) {
             props.location.week.name
         ),
         typeof week.days !== "undefined"
-          ? Object.keys(week.days).map((key, index) => (
-              <div key={key}>
-                <label className="Key">{index + " " + key}</label>
+          ? week.days.map(day => (
+              <div key={Object.keys(day)[0]}>
+                <label className="Key">{Object.keys(day)[0]}</label>
                 <input
                   onChange={HandleChange}
-                  name={key}
+                  name={Object.keys(day)[0]}
                   className="HourInput"
                   type="number"
                   max="24"
                   min="0"
                   step="0.01"
-                  value={week.days[key]}
-                  index={index}
+                  value={Object.values(day)[0]}
                   onClick={HandleClick}
                   onFocus={HandleFocus}
                   onBlur={HandleBlur}
@@ -91,7 +93,7 @@ function Week(props) {
           : null)
       }
       <div>
-        <label className="Total">Yhteensä</label>
+        <label className="TotalWeekLabel">Yhteensä</label>
         <label className="TotalValue">{CalcTotal()}</label>
       </div>
     </div>

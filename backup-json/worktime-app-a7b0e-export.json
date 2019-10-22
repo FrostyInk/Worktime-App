@@ -1,0 +1,455 @@
+{
+  "test" : [ {
+    "id" : "_sb885mpy8",
+    "name" : "Aili",
+    "places" : [ {
+      "name" : "Gate 8 - Aamu",
+      "type" : "place"
+    }, {
+      "name" : "Polaris - Aamu",
+      "type" : "place"
+    }, {
+      "name" : "Polaris - Ilta",
+      "type" : "place"
+    }, {
+      "name" : "Quartetto - Aamu",
+      "type" : "place"
+    }, {
+      "name" : "Olari - Aamu",
+      "type" : "place"
+    } ],
+    "type" : "worker"
+  }, {
+    "id" : "_orz1xh69n",
+    "name" : "Paula",
+    "places" : [ {
+      "name" : "Gate 8 - Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : "0"
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris - Aamu",
+      "type" : "place"
+    }, {
+      "name" : "Polaris - Ilta",
+      "type" : "place"
+    }, {
+      "name" : "Quartetto - Aamu",
+      "type" : "place"
+    }, {
+      "name" : "Olari - Aamu",
+      "type" : "place"
+    } ]
+  }, {
+    "id" : "_mxt68mbmu",
+    "name" : "Tiina",
+    "places" : [ {
+      "name" : "Polaris - Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "2.5"
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : 0
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : "2.5"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Quartetto",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : 0
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : 0
+        }, {
+          "Torstai" : "3.75"
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris - Ilta",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : 0
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : "2.5"
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Sola",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : 0
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : "1"
+        }, {
+          "Torstai" : 0
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    } ]
+  } ],
+  "workers" : [ {
+    "id" : "_utj7xrbzx",
+    "name" : "Tiina",
+    "places" : [ {
+      "name" : "Sola",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : 0
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : "1"
+        }, {
+          "Torstai" : 0
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris Ilta",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : 0
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : "2.5"
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Quartetto",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : 0
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : 0
+        }, {
+          "Torstai" : "3.75"
+        }, {
+          "Perjantai" : "0"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "2.5"
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : 0
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : "2.5"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    } ]
+  }, {
+    "id" : "_vcit7seiu",
+    "name" : "Paula",
+    "places" : [ {
+      "name" : "Olari - Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : 0
+        }, {
+          "Torstai" : 0
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Quartetto - Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "4.25"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : "3.75"
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris - Ilta",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "2.5"
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris - Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "2.5"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : "2.5"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Gate 8 - Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : 0
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    } ]
+  }, {
+    "id" : "_vwr9v0rnw",
+    "name" : "Aili",
+    "places" : [ {
+      "name" : "Olari Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : 0
+        }, {
+          "Keskiviikko" : 0
+        }, {
+          "Torstai" : 0
+        }, {
+          "Perjantai" : 0
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "Viikko 39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Quartetto Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : "4.25"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : "0"
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris Ilta",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "2.5"
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Polaris Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "2.5"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : "2.5"
+        }, {
+          "Perjantai" : "2.5"
+        }, {
+          "Lauantai" : "0"
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    }, {
+      "name" : "Gate8 Aamu",
+      "weeks" : [ {
+        "days" : [ {
+          "Maanantai" : "3.75"
+        }, {
+          "Tiistai" : "3.75"
+        }, {
+          "Keskiviikko" : "3.75"
+        }, {
+          "Torstai" : "4"
+        }, {
+          "Perjantai" : "3.75"
+        }, {
+          "Lauantai" : 0
+        }, {
+          "Sunnuntai" : 0
+        } ],
+        "name" : "39",
+        "type" : "week"
+      } ]
+    } ]
+  } ]
+}

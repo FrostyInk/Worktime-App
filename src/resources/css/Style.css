@@ -5,6 +5,7 @@
 }
 body {
   width: 100%;
+  background: #f9f2eb;
 }
 body,
 .Header,
@@ -19,32 +20,35 @@ a {
 
 .App {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
   margin-left: auto;
-  margin-right: auto;
-  background: #dce8f2;
+  background: #13223b;
 }
 
 .Header {
   position: relative;
-  background: #1c7fd6;
-  height: 50px;
+  background: #08152b;
+  border-bottom: 1px solid #697891;
+  height: 3em;
+  margin-bottom: 1em;
 }
 
 .Header h1 {
   color: white;
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding-top: 15px;
   text-align: center;
 }
 
 .Footer {
-  position: relative;
+  position: sticky;
   bottom: 0;
   height: 3em;
-  margin-top: 0.2em;
+  border-top: 1px solid #697891;
   width: 100%;
-  background: #1c7fd6;
+  background: #08152b;
   color: white;
   text-align: center;
 }
@@ -56,33 +60,76 @@ a {
 }
 
 .HomeContent .Links {
-  margin-top: 0.2rem;
+  margin-left: 10px;
+  width: calc(100% - 10px);
 }
 
 .HomeContent .Links .LinkButton {
   color: white;
   font-size: 1.1em;
-  background: #4e98d9;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  background: #2c3b55;
+  border-bottom: 1px solid #697891;
   width: calc(100% - 50px);
-  height: 2rem;
+  height: 2.5rem;
   float: right;
   padding-left: 20px;
-  padding-top: 0.4rem;
+  padding-top: 0.7rem;
+}
+
+.LinkButtonShortest {
+  color: white;
+  font-size: 1.1em;
+  background: #d9ae7f;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  width: calc(100% - 50px);
+  height: 2.5rem;
+  float: left;
+  padding-left: 20px;
+  padding-top: 0.6rem;
 }
 
 .LinkButtonShort {
   color: white;
   font-size: 1.1em;
-  background: #4e98d9;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: calc(100% - 100px);
-  height: 2rem;
+  background: #2c3b55;
+  border-bottom: 1px solid #697891;
+  width: calc(100% - 110px);
+  height: 2.5rem;
   float: left;
   padding-left: 20px;
-  padding-top: 0.4rem;
+  padding-top: 0.7rem;
+}
+
+.LinkButtonActiveWeek {
+  color: white;
+  font-size: 1.1em;
+  background: #2c3b55;
+  border-bottom: 1px solid #697891;
+  width: calc(100% - 160px);
+  height: 2.5rem;
+  float: left;
+  padding-left: 20px;
+  padding-top: 0.7rem;
+}
+
+.LinkButtonArchivedWeek {
+  color: white;
+  font-size: 1.1em;
+  background: #2c3b55;
+  border-bottom: 1px solid #697891;
+  width: calc(100% - 110px);
+  height: 2.5rem;
+  float: left;
+  padding-left: 20px;
+  padding-top: 0.7rem;
+}
+
+.LinkButtonArchivedWeek:hover,
+.LinkButtonActiveWeek:hover {
+  cursor: default;
 }
 
 .HomeContent .Links .LinkButton:hover {
@@ -93,13 +140,31 @@ a {
   cursor: default;
 }
 
+.HomeContent .Links .LinkButtonShortest:hover {
+  cursor: default;
+}
+
 .HomeContent .Links .HomeDeleteButton {
+  font-family: "Quicksand", sans-serif;
+  color: white;
   float: left;
-  background: #9e000b;
+  background: #2c133b;
   border: none;
-  height: 2rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  height: 2.5rem;
+  border-bottom: 1px solid #697891;
+  width: 50px;
+}
+
+.HomeContent .Links .Archive {
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  float: left;
+  background: #133b2c;
+  border: none;
+  height: 2.5rem;
+  border-bottom: 1px solid #697891;
   width: 50px;
 }
 
@@ -107,56 +172,83 @@ a {
   background: yellow;
 }
 
+.HomeContent .Links .Archive:hover {
+  background: yellow;
+}
+
 .Input {
   position: relative;
-  margin-top: 1em;
-  padding-left: 1em;
   margin-bottom: 1em;
 }
 
 .AddInput {
-  width: calc(100% - 70px);
+  font-family: "Quicksand", sans-serif;
+  width: calc(100% - 75px);
   position: relative;
-  height: 25px;
-  border: 1px solid #9de86b;
+  height: 2em;
+  color: white;
+  font-size: 1em;
+  border: none;
+  border-bottom: 1px solid #697891;
+  background: rgba(0, 0, 0, 0);
   text-align: center;
 }
 
 .AddInputSubmit {
-  width: 50px;
+  width: 60px;
+  height: 2.4em;
   position: relative;
+  float: right;
+  color: white;
+  background: #697891;
   border: none;
-  background: #9de86b;
-  height: 25px;
-  margin-left: 0;
+  margin-right: 15px;
   text-align: center;
 }
 
 .Key {
-  margin-top: 0.2rem;
   color: white;
   font-size: 1.1em;
-  background: #03a1fc;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: calc(100% - 50px);
+  background: #2c3b55;
+  border-bottom: 1px solid #697891;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  width: calc(100% - 75px);
+  height: 2.5rem;
+  float: left;
+  padding-left: 0.5rem;
+  padding-top: 0.7rem;
+  margin-left: 15px;
+}
+
+.WeeksLabelActive {
+  text-align: center;
+  color: rgba(200, 200, 200, 0.5);
+  font-size: 1.4em;
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.2);
+  width: calc(100% - 150px);
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  margin-right: auto;
+  margin-left: auto;
   height: 2rem;
   float: left;
   padding-left: 20px;
   padding-top: 0.4rem;
 }
 
-.Total {
-  margin-top: 0.2rem;
-  color: white;
-  font-size: 1.1em;
-  background: #ffb400;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: calc(100% - 50px);
+.WeeksLabelOld {
+  text-align: center;
+  color: rgba(200, 200, 200, 0.5);
+  box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.2);
+  width: calc(100% - 150px);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.4em;
   height: 2rem;
   float: left;
-  padding-left: 20px;
   padding-top: 0.4rem;
 }
 
@@ -164,48 +256,59 @@ a {
   float: right;
   color: white;
   font-size: 1.1em;
-  background: #cc9000;
+  background: #2c5055;
   border: none;
-  height: 2rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: 50px;
-  padding-left: 0.5rem;
-  padding-top: 0.4rem;
+  height: 2.5rem;
+  border-bottom: 1px solid #697891;
+  width: 60px;
+  padding-left: 0.3rem;
+  padding-top: 0.7rem;
 }
 
 .TotalValue {
   float: right;
   color: white;
   font-size: 1.1em;
-  background: #cc9000;
+  background: #2c5055;
   border: none;
-  margin-top: 0.2rem;
-  height: 2rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: 50px;
-  padding-left: 0.5rem;
-  padding-top: 0.4rem;
+  margin-top: 1rem;
+  height: 3rem;
+  border-bottom: 1px solid #697891;
+  width: 60px;
+  padding-left: 0.3rem;
+  padding-top: 1.2rem;
+}
+
+.TotalWeekLabel {
+  margin-top: 1rem;
+  color: white;
+  font-size: 1.1em;
+  background: #2c3b55;
+  border-bottom: 1px solid #697891;
+  width: calc(100% - 60px);
+  height: 3rem;
+  float: left;
+  padding-left: 1.25rem;
+  padding-top: 1.2rem;
 }
 
 .BackButton {
   border: none;
-  background: #ffb400;
+  background: #2c3b55;
   color: white;
   float: left;
   width: 6em;
-  height: 3em;
+  height: 2.9em;
   font-size: 1em;
 }
 
-.ResetButton {
+.MailButton {
   border: none;
-  background: #9e000b;
+  background: #1e082b;
   color: white;
   float: right;
   width: 6em;
-  height: 3em;
+  height: 2.9em;
   font-size: 1em;
 }
 
@@ -218,16 +321,75 @@ a {
   float: right;
   color: white;
   font-size: 1.1em;
-  background: #1c7fd6;
+  background: #2c5055;
   border: none;
-  margin-top: 0.2rem;
-  height: 2rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  width: 50px;
-  padding-left: 1rem;
-  padding-top: 0.2rem;
+  height: 2.5rem;
+  border-bottom: 1px solid #697891;
+  width: 60px;
+  padding-left: 0.5rem;
+  padding-top: 0.3rem;
 
   -webkit-appearance: none;
   -moz-appearance: textfield;
+}
+
+.DeleteConfirmationContainer {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 1em);
+  background: rgba(19, 34, 59, 0.8);
+}
+
+.DeleteConfirmation {
+  position: sticky;
+  top: 10em;
+  background: #13223b;
+  border: 1px solid #697891;
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 2em);
+  height: 10rem;
+}
+
+.DeleteConfirmationText {
+  font-size: 1.1em;
+  color: white;
+  padding-top: 3rem;
+  width: 14em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.DeleteConfirmationButtons {
+  position: relative;
+  margin-top: 2rem;
+  width: 14rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.DeleteConfirmationButtons button {
+  position: relative;
+  width: calc(12rem / 2);
+  height: 2.5em;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.DeleteConfirmationYes {
+  border: 1px solid #697891;
+  background: #9e000b;
+  color: white;
+}
+
+.DeleteConfirmationNo {
+  border: 1px solid #697891;
+  background: #2c3b55;
+  color: white;
+}
+
+.LoadingText {
+  margin-left: 2em;
+  color: white;
 }

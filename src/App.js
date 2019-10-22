@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Firebase from "firebase";
 import Config from "./resources/data/Config";
-import ServiceAccount from "./resources/data/serviceAccount";
 
 import Header from "./resources/components/Header";
 import HomeContent from "./resources/components/HomeContent";
@@ -12,9 +11,10 @@ import WorkPlace from "./resources/components/WorkPlace";
 import Week from "./resources/components/Week";
 
 function App() {
-  const saveFileName = "WorkTimeAppData";
   const [workers, SetWorkers] = useState([]);
   const [title, SetTitle] = useState([]);
+  const [showPopup, SetShowPopUp] = useState(false);
+  const [toDelete, SetToDelete] = useState({});
 
   const backup = "/backup";
   const testBuild = "/test";
@@ -24,18 +24,21 @@ function App() {
 
   useEffect(() => {
     if (workers.length > 0) {
-      Save();
+      Save(currentBuild);
     }
   }, [workers]);
 
   useEffect(() => {
     Firebase.initializeApp(Config);
-    Load();
+    Load(currentBuild);
   }, []);
 
-  function Save() {
+  function SaveTestBuildToProduction() {}
+
+  function Save(build) {
+    SortPlaces(workers);
     Firebase.database()
-      .ref(currentBuild)
+      .ref(build)
       .set(workers)
       .then(data => console.log("Success"))
       .catch(err => console.error(err));
@@ -44,13 +47,14 @@ function App() {
     console.log("Saving to firebase!");
   }
 
-  function Load() {
+  function Load(build) {
     Firebase.database()
-      .ref(currentBuild)
+      .ref(build)
       .once("value", function(snapshot) {
         if (snapshot.val() !== null) {
-          SetWorkers(snapshot.val());
-          console.log(snapshot.val());
+          SetWorkers(
+            snapshot.val().sort((a, b) => a.name.localeCompare(b.name))
+          );
         } else {
           console.log("Data is null");
         }
@@ -73,6 +77,12 @@ function App() {
     console.log("Saving backup to firebase!");
   }
 
+  function SortPlaces(workers) {
+    workers.forEach(w => {
+      w.places.sort((a, b) => a.name.localeCompare(b.name));
+    });
+  }
+
   function AddWorkerCallback(worker) {
     if (!worker) return;
     for (const item in workers) {
@@ -84,6 +94,7 @@ function App() {
     const id = UniqueID();
     const newWorker = {
       id: id,
+      type: "worker",
       name: cleaned,
       places: []
     };
@@ -95,12 +106,14 @@ function App() {
     const cleaned = TitleCase(place);
     const newPlace = {
       name: cleaned,
-      weeks: []
+      type: "place",
+      weeks: [],
+      oldweeks: []
     };
 
     const t = {
       ...worker,
-      places: [...worker.places]
+      places: typeof worker.places !== "undefined" ? worker.places : []
     };
 
     t.places.unshift(newPlace);
@@ -112,15 +125,16 @@ function App() {
     const cleaned = TitleCase(week);
     const newWeek = {
       name: cleaned,
-      days: {
-        Maanantai: 0,
-        Tiistai: 0,
-        Keskiviikko: 0,
-        Torstai: 0,
-        Perjantai: 0,
-        Lauantai: 0,
-        Sunnuntai: 0
-      }
+      type: "week",
+      days: [
+        { Maanantai: 0 },
+        { Tiistai: 0 },
+        { Keskiviikko: 0 },
+        { Torstai: 0 },
+        { Perjantai: 0 },
+        { Lauantai: 0 },
+        { Sunnuntai: 0 }
+      ]
     };
 
     const t = {
@@ -130,7 +144,11 @@ function App() {
         p.name === place.name
           ? {
               name: p.name,
-              weeks: [newWeek, ...p.weeks]
+              weeks:
+                typeof p.weeks !== "undefined"
+                  ? [newWeek, ...p.weeks]
+                  : [newWeek],
+              oldweeks: typeof p.oldweeks !== "undefined" ? [...p.oldweeks] : []
             }
           : p
       )
@@ -147,7 +165,34 @@ function App() {
         p.name === place.name
           ? {
               name: p.name,
-              weeks: p.weeks.map(w => (w.name === newWeek.name ? newWeek : w))
+              weeks: p.weeks.map(w => (w.name === newWeek.name ? newWeek : w)),
+              oldweeks: typeof p.oldweeks !== "undefined" ? p.oldweeks : []
+            }
+          : p
+      )
+    };
+
+    SetWorkers(workers.map(w => (w.name === t.name ? t : w)));
+  }
+
+  function empty() {}
+
+  function ArchiveWeek(worker, place, week) {
+    const t = {
+      id: worker.id,
+      name: worker.name,
+      places: worker.places.map(p =>
+        p.name === place.name
+          ? {
+              name: p.name,
+              weeks: p.weeks.filter(w => w.name !== week.name),
+              oldweeks:
+                typeof p.oldweeks !== "undefined"
+                  ? [
+                      { name: week.name, type: "oldweek", days: week.days },
+                      ...p.oldweeks
+                    ]
+                  : [{ name: week.name, type: "oldweek", days: week.days }]
             }
           : p
       )
@@ -172,6 +217,59 @@ function App() {
     }
   }
 
+  function DeleteWorker(data) {
+    SetWorkers(workers.filter(w => w.name !== data.toDelete.name));
+    SetShowPopUp(false);
+  }
+
+  function DeletePlace(data) {
+    SetWorkers(
+      workers.map(w => {
+        if (w.name === data.user.name) {
+          w.places = w.places.filter(p => p.name !== data.toDelete.name);
+        }
+
+        return w;
+      })
+    );
+
+    SetShowPopUp(false);
+  }
+
+  function DeleteWeek(data) {
+    data.toDelete.type === "week"
+      ? SetWorkers(
+          workers.map(w => {
+            if (w.name === data.user.name) {
+              w.places.map(p => {
+                if (p.name === data.place.name) {
+                  p.weeks = p.weeks.filter(v => v.name !== data.toDelete.name);
+                }
+              });
+            }
+
+            return w;
+          })
+        )
+      : SetWorkers(
+          workers.map(w => {
+            if (w.name === data.user.name) {
+              w.places.map(p => {
+                if (p.name === data.place.name) {
+                  p.oldweeks = p.oldweeks.filter(
+                    v => v.name !== data.toDelete.name
+                  );
+                }
+              });
+            }
+
+            return w;
+          })
+        );
+
+    SetShowPopUp(false);
+  }
+
   function Title(title) {
     SetTitle(title);
   }
@@ -191,6 +289,11 @@ function App() {
                 AddWorkerCallback={AddWorkerCallback}
                 SetTitle={Title}
                 GetWorkerById={GetWorkerById}
+                showPopUp={showPopup}
+                SetShowPopUp={SetShowPopUp}
+                toDelete={toDelete}
+                SetToDelete={SetToDelete}
+                DeleteWorker={DeleteWorker}
               />
             )}
           />
@@ -203,6 +306,11 @@ function App() {
                 AddPlaceCallback={AddPlaceCallback}
                 SetTitle={Title}
                 GetWorkerById={GetWorkerById}
+                showPopUp={showPopup}
+                SetShowPopUp={SetShowPopUp}
+                toDelete={toDelete}
+                SetToDelete={SetToDelete}
+                DeletePlace={DeletePlace}
               />
             )}
           />
@@ -213,9 +321,16 @@ function App() {
               <WorkPlace
                 {...props}
                 AddWeekCallback={AddWeekCallback}
+                ArchiveWeek={ArchiveWeek}
                 SetTitle={Title}
                 GetWorkerById={GetWorkerById}
                 GetWorkplaceFrom={GetWorkplaceFrom}
+                showPopUp={showPopup}
+                SetShowPopUp={SetShowPopUp}
+                toDelete={toDelete}
+                SetToDelete={SetToDelete}
+                DeleteWorker={DeleteWorker}
+                DeleteWeek={DeleteWeek}
               />
             )}
           />
@@ -228,12 +343,17 @@ function App() {
             )}
           />
         </Switch>
-        <Route
-          render={props => (
-            <Footer {...props} backup={CreateBackup} build={currentBuild} />
-          )}
-        />
       </div>
+      <Route
+        render={props => (
+          <Footer
+            {...props}
+            CreateBackup={CreateBackup}
+            build={currentBuild}
+            workers={workers}
+          />
+        )}
+      />
     </Router>
   );
 
